@@ -4,10 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+    - paths:
+      - ./src/utils/solver.py
+  </py-env>
     <title>Sudoku Vue.js</title>
   </head>
   <body>
     <div id="app"></div>
+
+    <py-script output="response" >
+      from solver import sudoku
+      G = [
+      [0, 3, 0, 0, 0, 0, 0, 5, 0],
+      [0, 0, 8, 0, 9, 1, 3, 0, 0],
+      [6, 0, 0, 4, 0, 0, 7, 0, 0],
+      [0, 0, 3, 8, 1, 0, 0, 0, 0],
+      [0, 0, 6, 0, 0, 0, 2, 0, 0],
+      [0, 0, 0, 0, 3, 4, 8, 0, 0],
+      [0, 0, 1, 0, 0, 8, 0, 0, 9],
+      [0, 0, 4, 1, 2, 0, 6, 0, 0],
+      [0, 6, 0, 0, 0, 0, 0, 4, 0]
+      ]
+      sudoku(G)
+    </py-script>
     <script type="module" src="/src/main.ts"></script>
+    <div id="response"></div>
   </body>
 </html>

@@ -10,13 +10,12 @@ provide("solution", data.solution);
 
 <template>
   <div class="app">
-    <h2>Sudoku</h2>
+    <h2 class="title">Sudoku</h2>
     <BoardTemplate :data="data" />
     <p>
-      Build with <a href="https://vuejs.org/" target="_blank">Vue3</a> | Hosted
+      Build with <a href="httnps://vuejs.org/" target="_blank">Vue3</a> | Hosted
       on <a href="https://vercel.com/" target="_blank">Vercel</a> Made by
       <a href="https://github.com/Adrien35240" target="_blank">@Adrien35240</a>
-      with 🥭.
     </p>
   </div>
 </template>
@@ -38,10 +37,16 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.title{
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: bold;
+}
 h2 {
   text-align: center;
 }
 p {
+  margin-top: 1rem;
   width: 200px;
 }
 </style>

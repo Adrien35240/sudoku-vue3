@@ -1,2 +1,3 @@
 ## Sudoku build with vue3
-[DEMO](https://sudoku-vue3.vercel.app/)
+### Sudoku solver is in python, import with py-script
+### [DEMO HERE](https://sudoku-vue3.vercel.app/)

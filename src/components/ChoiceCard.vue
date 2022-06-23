@@ -1,42 +1,35 @@
 <template>
-    <div class="choice">
-        <div class="choice__row" v-for="i in 3" :key="i">
-            <div class="choice__col" v-for="j in 3" :key="j">
-                <div
-                    class="choice__cell"
-                    @click="setCurrentCell(i, j, choices)"
-                >
-                    {{ choices[i - 1][j - 1] }}
-                </div>
-            </div>
+  <div class="choice">
+    <div class="choice__row" v-for="i in 3" :key="i">
+      <div class="choice__col" v-for="j in 3" :key="j">
+        <div class="choice__cell" @click="setCurrentCell(i, j, choices)">
+          {{ choices[i - 1][j - 1] }}
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, inject } from "vue";
 const currentAnswer = inject("currentAnswer");
-const solution = inject("solution");
+// const solution = inject("solution");
 const showModal = inject("showModal");
+const solution = document.getElementById('response')?.textContent
+console.log('python result ',JSON.parse(solution))
 const props = defineProps<{
-    choices: number[][] | undefined;
-    row?: number;
-    col?: number;
+  choices: number[][] | undefined;
+  row?: number;
+  col?: number;
 }>();
-// TODO: delete numbers already used from choices
+/* TODO: delete numbers already used from choices
 
-props.choices.map(choice=>{
-  choice.map(res=>{
-    console.log(res)
-    console.log("currentAnswer",currentAnswer.value)
-
+props.choices?.map((choice) => {
+  choice.map((res) => {
+    console.log(res);
+    console.log("currentAnswer", currentAnswer.value);
   })
-})
-
-
-
-
-
+});*/
 
 // props.choices.map((array) =>
 //     array.map((num) => {
@@ -52,13 +45,14 @@ props.choices.map(choice=>{
 // );
 
 function setCurrentCell(i: number, j: number, choices: any[][]) {
-    showModal.value = false;
-    currentAnswer.value[props.row - 1][props.col - 1] = choices[i - 1][j - 1];
-    inject("currentAnswer", currentAnswer);
-    console.log("slution", solution);
-    if (JSON.stringify(currentAnswer.value) === JSON.stringify(solution)) {
-        console.log("done!");
-    }
+  showModal.value = false;
+  currentAnswer.value[props.row - 1][props.col - 1] = choices[i - 1][j - 1];
+  inject("currentAnswer", currentAnswer);
+  const parsedSolution = solution.split(' ').join('');
+  console.log("currentAnswer", parsedSolution);
+  if (JSON.stringify(currentAnswer.value) === parsedSolution) {
+    console.log("done!");
+  }
 }
 </script>
 
@@ -66,17 +60,17 @@ function setCurrentCell(i: number, j: number, choices: any[][]) {
 .choice {
 }
 .choice__row {
-    display: flex;
+  display: flex;
 }
 .choice__cell {
-    border: 1px solid #ff7147;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    width: 45px;
+  border: 1px solid #ff7147;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 45px;
 }
 .choice__cell:hover {
-    background-color: #ff7147;
+  background-color: #ff7147;
 }
 </style>
