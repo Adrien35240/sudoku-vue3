@@ -5,7 +5,7 @@ import { ref, provide } from "vue";
 let puzzle = data.puzzle;
 const currentAnswer = ref(puzzle);
 provide("currentAnswer", currentAnswer);
-provide("solution", data.solution);
+//provide("solution", data.solution);
 </script>
 
 <template>
